@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rome Architecture Map Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Eagle+Lake&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="app-header">
+        <div class="title-wrap">
+          <h1 id="app-title">Rome Architecture Map Demo</h1>
+          <p id="app-tagline">Rome wasn't built in a day.</p>
+        </div>
+        <div class="header-right">
+          <div class="legend-stack">
+            <div class="legend" id="period-legend"></div>
+            <div class="type-legend" id="type-legend"></div>
+          </div>
+          <div class="lang-toggle" role="group" aria-label="Language">
+            <button class="lang-btn is-active" type="button" data-lang="en">
+              EN
+            </button>
+            <button class="lang-btn" type="button" data-lang="zh">中文</button>
+          </div>
+        </div>
+      </header>
+
+      <aside class="filters">
+        <h2 id="filters-title">Filters</h2>
+        <details class="filter-group">
+          <summary id="period-title">Period</summary>
+          <div id="period-filters" class="filter-list"></div>
+        </details>
+
+        <details class="filter-group" open>
+          <summary id="type-title">Type</summary>
+          <div id="type-filters-all" class="filter-list"></div>
+        </details>
+
+        <details class="filter-group" open>
+          <summary id="heritage-title">Heritage</summary>
+          <div id="heritage-filters" class="filter-list"></div>
+        </details>
+      </aside>
+
+      <main class="map-area">
+        <div class="type-toolbar">
+          <div class="type-tabs" role="tablist" aria-label="Type tabs">
+            <button
+              class="type-tab is-active"
+              type="button"
+              role="tab"
+              data-tab="all"
+            >
+              All
+            </button>
+            <button
+              class="type-tab"
+              type="button"
+              role="tab"
+              data-tab="architecture"
+            >
+              Architecture
+            </button>
+            <button
+              class="type-tab"
+              type="button"
+              role="tab"
+              data-tab="landscape"
+            >
+              Landscape
+            </button>
+            <button class="type-tab" type="button" role="tab" data-tab="urban">
+              Urban Space
+            </button>
+          </div>
+        </div>
+        <div id="map"></div>
+      </main>
+
+      <footer class="slider-panel">
+        <div class="slider-header">
+          <div>
+            <h2 id="slider-title">Construction Window</h2>
+            <p id="range-readout">
+              Showing buildings completed between -500 AD and 2024 AD.
+            </p>
+          </div>
+          <button id="reset-btn" type="button">Reset Range</button>
+        </div>
+        <div id="time-slider"></div>
+      </footer>
+    </div>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"></script>
+    <script src="buildings.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
