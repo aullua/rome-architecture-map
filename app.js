@@ -1,4 +1,4 @@
-/* global L, noUiSlider, BUILDINGS */
+/* global L, noUiSlider, BUILDINGS, RomeCheckins */
 
 const PERIOD_COLORS = {
   "Ancient Roman": "marker-ancient-roman",
@@ -186,6 +186,31 @@ const I18N = {
     heritage: "Heritage",
     constructionWindow: "Construction Window",
     resetRange: "Reset Range",
+    checkins: {
+      title: "My visits",
+      all: "All", visited: "Visited", unvisited: "Not visited",
+      progress: (count, total) => `${count} / ${total} buildings visited`,
+      progressLabel: "Visit progress",
+      storageHint: "Saved in this browser only. Export a backup to move to another device or before clearing site data.",
+      importHint: "Import adds new visits and keeps existing records.",
+      export: "Export visits", import: "Import visits",
+      add: "Check in", edit: "Edit visit", remove: "Undo check-in",
+      date: "Visit date", note: "Notes (optional)",
+      notePlaceholder: "What would you like to remember?",
+      noteHint: "Up to 1,000 characters.",
+      save: "Save visit", cancel: "Cancel",
+      visitStatus: (date) => `✓ Visited · ${date}`,
+      saved: "Visit saved in this browser.", removed: "Check-in removed.",
+      exported: "Backup downloaded. Keep it to restore your visits.",
+      imported: ({ added, kept, skipped }) => `Imported ${added} new visits; kept ${kept} existing records; skipped ${skipped} unknown buildings.`,
+      invalid: "Use a valid visit date up to today and notes of no more than 1,000 characters.",
+      invalidFile: "Import failed. Choose a valid backup exported by this map. Your records have not changed.",
+      storage: "Unable to save visits. Allow browser storage and check available space, then reload. Your existing records have not changed.",
+      corrupt: "Saved visits could not be read. They have been preserved. Export the saved data for recovery before changing it.",
+      readFile: "Unable to read this file. Try selecting it again.",
+      tooLarge: "This backup is too large. Choose a JSON file smaller than 2 MB.",
+      rawExported: "Original saved data downloaded for recovery.",
+    },
     tabs: {
       all: "All",
       architecture: "Architecture",
@@ -207,6 +232,31 @@ const I18N = {
     heritage: "遗产等级",
     constructionWindow: "建造时间",
     resetRange: "重置范围",
+    checkins: {
+      title: "我的打卡",
+      all: "全部", visited: "已打卡", unvisited: "未打卡",
+      progress: (count, total) => `已打卡 ${count} / 全部建筑 ${total}`,
+      progressLabel: "打卡进度",
+      storageHint: "记录仅保存在当前浏览器。换设备或清除网站数据前，请导出备份。",
+      importHint: "导入会合并新增打卡，保留已有记录。",
+      export: "导出记录", import: "导入记录",
+      add: "打卡", edit: "编辑记录", remove: "取消打卡",
+      date: "到访日期", note: "备注（选填）",
+      notePlaceholder: "记下这次到访的感受……",
+      noteHint: "最多 1,000 字。",
+      save: "保存记录", cancel: "返回",
+      visitStatus: (date) => `✓ 已打卡 · ${date}`,
+      saved: "打卡记录已保存在当前浏览器。", removed: "已取消打卡。",
+      exported: "备份已下载，请妥善保存以便恢复记录。",
+      imported: ({ added, kept, skipped }) => `新增 ${added} 条打卡，保留 ${kept} 条已有记录，跳过 ${skipped} 个未知建筑。`,
+      invalid: "请选择不晚于今天的有效日期，备注不能超过 1,000 字。",
+      invalidFile: "导入失败，请选择本地图导出的有效备份。原有记录未改变。",
+      storage: "无法保存，请允许浏览器存储并检查剩余空间，然后刷新页面。原有记录未改变。",
+      corrupt: "已有记录无法读取，原始数据已保留。请先导出原始数据用于恢复。",
+      readFile: "无法读取文件，请重新选择。",
+      tooLarge: "备份文件过大，请选择小于 2 MB 的 JSON 文件。",
+      rawExported: "已下载用于恢复的原始存储数据。",
+    },
     tabs: {
       all: "全部",
       architecture: "建筑",
@@ -229,7 +279,7 @@ const map = L.map("map", {
 });
 
 L.tileLayer(
-   "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=cb1_4g2k_1_ad6741852bc5019b7f5ed83d",
+  "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=cb1_4g2k_1_ad6741852bc5019b7f5ed83d",
   {
     subdomains: "abcd",
     maxZoom: 20,
@@ -256,6 +306,103 @@ const typeTitleEl = document.getElementById("type-title");
 const heritageTitleEl = document.getElementById("heritage-title");
 const sliderTitleEl = document.getElementById("slider-title");
 const langButtons = document.querySelectorAll(".lang-btn");
+const checkinFilterButtons = document.querySelectorAll("[data-checkin-filter]");
+const checkinProgressEl = document.getElementById("checkin-progress");
+const checkinProgressBar = document.getElementById("checkin-progress-bar");
+const checkinMessageEl = document.getElementById("checkin-message");
+const checkinImportFile = document.getElementById("checkin-import-file");
+let activeCheckinFilter = "all";
+let checkinMessage = null;
+let checkinStorage = null;
+try { checkinStorage = window.localStorage; } catch { /* Display a storage error below. */ }
+let checkinStore = new RomeCheckins.Store(checkinStorage, BUILDINGS.map((building) => building.id));
+
+function showCheckinMessage(key, data = null, error = false) {
+  checkinMessage = { key, data, error };
+  const text = I18N[currentLang].checkins[key];
+  checkinMessageEl.textContent = typeof text === "function" ? text(data) : text;
+  checkinMessageEl.classList.toggle("is-error", error);
+}
+
+function updateCheckinPanel() {
+  const labels = I18N[currentLang].checkins;
+  document.getElementById("checkin-title").textContent = labels.title;
+  document.getElementById("checkin-storage-hint").textContent = labels.storageHint;
+  document.getElementById("checkin-import-hint").textContent = labels.importHint;
+  document.getElementById("checkin-export").textContent = labels.export;
+  document.getElementById("checkin-import").textContent = labels.import;
+  checkinProgressEl.textContent = labels.progress(checkinStore.size, BUILDINGS.length);
+  checkinProgressBar.max = BUILDINGS.length;
+  checkinProgressBar.value = checkinStore.size;
+  checkinProgressBar.setAttribute("aria-label", labels.progressLabel);
+  checkinFilterButtons.forEach((button) => {
+    button.textContent = labels[button.dataset.checkinFilter];
+    button.setAttribute("aria-pressed", String(button.dataset.checkinFilter === activeCheckinFilter));
+  });
+  if (checkinMessage) showCheckinMessage(checkinMessage.key, checkinMessage.data, checkinMessage.error);
+}
+
+function refreshCheckins() {
+  buildingMarkers.forEach(({ building, marker }) => {
+    marker.setIcon(createMarkerIcon(building));
+    marker.setPopupContent(createPopupContent(building));
+  });
+  updateCheckinPanel();
+  updateMarkers();
+}
+
+checkinFilterButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    activeCheckinFilter = button.dataset.checkinFilter;
+    updateCheckinPanel();
+    updateMarkers();
+  });
+});
+
+document.getElementById("checkin-export").addEventListener("click", () => {
+  try {
+    if (checkinStore.loadError === "storage") throw new Error("storage");
+    const raw = checkinStore.loadError === "corrupt";
+    const payload = raw ? checkinStorage.getItem(RomeCheckins.STORAGE_KEY) : checkinStore.exportJSON();
+    if (payload === null) throw new Error("storage");
+    const url = URL.createObjectURL(new Blob([payload], { type: "application/json" }));
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `rome-visits-${raw ? "recovery-" : ""}${RomeCheckins.today()}.json`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    showCheckinMessage(raw ? "rawExported" : "exported");
+  } catch { showCheckinMessage("storage", null, true); }
+});
+
+document.getElementById("checkin-import").addEventListener("click", () => checkinImportFile.click());
+checkinImportFile.addEventListener("change", async () => {
+  const file = checkinImportFile.files[0];
+  checkinImportFile.value = "";
+  if (!file) return;
+  if (file.size > 2 * 1024 * 1024) { showCheckinMessage("tooLarge", null, true); return; }
+  let contents;
+  try { contents = await file.text(); }
+  catch { showCheckinMessage("readFile", null, true); return; }
+  try {
+    const result = checkinStore.importJSON(contents);
+    refreshCheckins();
+    showCheckinMessage("imported", result);
+  } catch (error) {
+    showCheckinMessage(error.message === "invalid" ? "invalidFile" : error.message, null, true);
+  }
+});
+
+window.addEventListener("storage", (event) => {
+  if (event.key !== RomeCheckins.STORAGE_KEY && event.key !== null) return;
+  checkinStore = new RomeCheckins.Store(checkinStorage, BUILDINGS.map((building) => building.id));
+  checkinMessage = null;
+  checkinMessageEl.textContent = "";
+  refreshCheckins();
+  if (checkinStore.loadError) showCheckinMessage(checkinStore.loadError, null, true);
+});
 
 const periodState = new Map();
 const typeState = new Map();
@@ -597,6 +744,7 @@ function updateStaticText() {
   });
 
   document.documentElement.lang = currentLang === "zh" ? "zh" : "en";
+  updateCheckinPanel();
   updateReadout();
 }
 
@@ -734,20 +882,139 @@ function getTypeClass(type) {
   return "type-civic";
 }
 
-function createMarker(building) {
+function createMarkerIcon(building) {
   const period = building.period;
   const markerClass = PERIOD_COLORS[period] || "marker-modern";
   const typeClass = getTypeClass(building.type);
   const iconSvg = TYPE_SVGS[building.type] || TYPE_SVGS["Civic Architecture"];
-  const icon = L.divIcon({
+  const visited = checkinStore.has(building.id);
+  return L.divIcon({
     className: "",
-    html: `<div class="marker-icon ${markerClass} ${typeClass}">${iconSvg}</div>`,
+    html: `<div class="marker-icon ${markerClass} ${typeClass}${visited ? " is-visited" : ""}">${iconSvg}${visited ? '<span class="checkin-badge" aria-hidden="true">✓</span>' : ""}</div>`,
     iconSize: [30, 30],
     iconAnchor: [15, 15],
   });
 
-  const marker = L.marker([building.lat, building.lon], { icon });
-  const imageUrl = getImageUrl(building);
+}
+
+function createCheckinControls(building) {
+  const labels = I18N[currentLang].checkins;
+  const record = checkinStore.get(building.id);
+  const section = document.createElement("section");
+  section.className = "popup-checkin";
+  const summary = document.createElement("div");
+  const status = document.createElement("p");
+  status.className = "checkin-status";
+  if (record) {
+    const formatted = new Intl.DateTimeFormat(currentLang === "zh" ? "zh-CN" : "en-GB", { year: "numeric", month: "short", day: "numeric" }).format(new Date(`${record.date}T12:00:00`));
+    status.textContent = labels.visitStatus(formatted);
+    summary.appendChild(status);
+    if (record.note) {
+      const note = document.createElement("p");
+      note.className = "checkin-note";
+      note.textContent = record.note;
+      summary.appendChild(note);
+    }
+  }
+  const actions = document.createElement("div");
+  actions.className = "checkin-popup-actions";
+  const message = document.createElement("p");
+  message.className = "checkin-message is-error";
+  message.setAttribute("role", "alert");
+
+  function commit(date, note, remove = false) {
+    try {
+      if (remove) checkinStore.remove(building.id);
+      else checkinStore.save(building.id, date, note);
+      refreshCheckins();
+      showCheckinMessage(remove ? "removed" : "saved");
+      const item = buildingMarkers.find((entry) => entry.building.id === building.id);
+      if (item?.marker.isPopupOpen()) item.marker.getPopup().getElement()?.querySelector(".checkin-primary")?.focus();
+    } catch (error) {
+      message.textContent = labels[error.message] || labels.storage;
+      showCheckinMessage(error.message in labels ? error.message : "storage", null, true);
+    }
+  }
+
+  const primary = document.createElement("button");
+  primary.type = "button";
+  primary.className = "checkin-primary";
+  primary.textContent = record ? labels.edit : labels.add;
+  actions.appendChild(primary);
+  if (record) {
+    const remove = document.createElement("button");
+    remove.type = "button";
+    remove.className = "checkin-remove";
+    remove.textContent = labels.remove;
+    remove.addEventListener("click", () => commit(null, null, true));
+    actions.appendChild(remove);
+  }
+
+  const form = document.createElement("form");
+  form.className = "checkin-form";
+  form.hidden = true;
+  const dateLabel = document.createElement("label");
+  dateLabel.htmlFor = `visit-date-${building.id}`;
+  dateLabel.textContent = labels.date;
+  const dateInput = document.createElement("input");
+  dateInput.type = "date";
+  dateInput.id = dateLabel.htmlFor;
+  dateInput.required = true;
+  dateInput.min = "0001-01-01";
+  dateInput.max = RomeCheckins.today();
+  dateInput.value = record?.date || RomeCheckins.today();
+  const noteLabel = document.createElement("label");
+  noteLabel.htmlFor = `visit-note-${building.id}`;
+  noteLabel.textContent = labels.note;
+  const noteInput = document.createElement("textarea");
+  noteInput.id = noteLabel.htmlFor;
+  noteInput.rows = 3;
+  noteInput.maxLength = RomeCheckins.MAX_NOTE_LENGTH;
+  noteInput.placeholder = labels.notePlaceholder;
+  noteInput.value = record?.note || "";
+  const noteHint = document.createElement("p");
+  noteHint.id = `visit-note-hint-${building.id}`;
+  noteHint.className = "checkin-hint";
+  noteHint.textContent = labels.noteHint;
+  noteInput.setAttribute("aria-describedby", noteHint.id);
+  const formActions = document.createElement("div");
+  formActions.className = "checkin-popup-actions";
+  const save = document.createElement("button");
+  save.type = "submit";
+  save.className = "checkin-primary";
+  save.textContent = labels.save;
+  const cancel = document.createElement("button");
+  cancel.type = "button";
+  cancel.textContent = labels.cancel;
+  cancel.addEventListener("click", () => {
+    form.hidden = true;
+    summary.hidden = false;
+    actions.hidden = false;
+    message.textContent = "";
+    dateInput.value = record?.date || RomeCheckins.today();
+    noteInput.value = record?.note || "";
+    primary.focus();
+  });
+  formActions.append(save, cancel);
+  form.append(dateLabel, dateInput, noteLabel, noteInput, noteHint, formActions);
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    commit(dateInput.value, noteInput.value);
+  });
+  primary.addEventListener("click", () => {
+    if (!record) { commit(RomeCheckins.today(), ""); return; }
+    summary.hidden = true;
+    actions.hidden = true;
+    form.hidden = false;
+    dateInput.max = RomeCheckins.today();
+    dateInput.focus();
+  });
+  section.append(summary, actions, form, message);
+  return section;
+}
+
+function createPopupContent(building) {
+  const imageUrl = building.image || wikipediaImageCache.get(getWikipediaTitle(building)) || getImageUrl(building);
   const wikiTitle = getWikipediaTitle(building);
   const popupLabels = I18N[currentLang].popup;
   const architectLine = building.architect
@@ -758,8 +1025,9 @@ function createMarker(building) {
   const heritageLine = building.heritage
     ? `${popupLabels.heritage}: ${translateLabel("heritage", building.heritage)}`
     : null;
-  const popupHtml = `
-    <div class="popup-card">
+  const content = document.createElement("div");
+  content.className = "popup-card";
+  content.innerHTML = `
       <img src="${imageUrl}" alt="${building.name}" loading="lazy" data-wiki-title="${wikiTitle}" />
       <div class="popup-title">${building.name}</div>
       <div class="popup-meta">${formatYear(building.year_start)} - ${formatYear(building.year_end)}</div>
@@ -768,9 +1036,17 @@ function createMarker(building) {
       ${heritageLine ? `<div class="popup-meta">${heritageLine}</div>` : ""}
       ${architectLine ? `<div class="popup-meta">${architectLine}</div>` : ""}
       <div>${building.description}</div>
-    </div>
   `;
-  marker.bindPopup(popupHtml);
+  content.appendChild(createCheckinControls(building));
+  return content;
+}
+
+function createMarker(building) {
+  const marker = L.marker([building.lat, building.lon], {
+    icon: createMarkerIcon(building),
+    title: building.name,
+  });
+  marker.bindPopup(createPopupContent(building), { maxWidth: 290, maxHeight: 360 });
   marker.on("popupopen", async (event) => {
     if (building.image) return;
     const img = event.popup.getElement().querySelector("img[data-wiki-title]");
@@ -796,6 +1072,7 @@ function createMarker(building) {
 let buildingMarkers = [];
 
 function rebuildMarkers() {
+  markerLayer.clearLayers();
   buildingMarkers = BUILDINGS.map((building) => ({
     building,
     marker: createMarker(building),
@@ -805,18 +1082,21 @@ function rebuildMarkers() {
 function passesFilters(building) {
   const { period, type, heritage } = building;
   const heritageOk = heritage ? heritageState.get(heritage) : true;
-  return periodState.get(period) && typeState.get(type) && heritageOk;
+  const visited = checkinStore.has(building.id);
+  const checkinOk = activeCheckinFilter === "all" || (activeCheckinFilter === "visited" ? visited : !visited);
+  return periodState.get(period) && typeState.get(type) && heritageOk && checkinOk;
 }
 
 function updateMarkers() {
-  markerLayer.clearLayers();
   const [start, end] = getActiveRange();
 
   buildingMarkers.forEach(({ building, marker }) => {
     const inRange = building.year_start >= start && building.year_end <= end;
 
     if (passesFilters(building) && inRange) {
-      markerLayer.addLayer(marker);
+      if (!markerLayer.hasLayer(marker)) markerLayer.addLayer(marker);
+    } else if (markerLayer.hasLayer(marker)) {
+      markerLayer.removeLayer(marker);
     }
   });
 
@@ -844,3 +1124,4 @@ langButtons.forEach((btn) => {
 });
 
 setLanguage(currentLang);
+if (checkinStore.loadError) showCheckinMessage(checkinStore.loadError, null, true);
