@@ -1,5 +1,6 @@
 const BUILDINGS = [
   {
+    id: "colosseum",
     name: "Colosseum",
     lat: 41.8902,
     lon: 12.4922,
@@ -13,6 +14,7 @@ const BUILDINGS = [
     description: "Flavian amphitheater for public spectacles and games.",
   },
   {
+    id: "pantheon",
     name: "Pantheon",
     lat: 41.8986,
     lon: 12.4768,
@@ -26,6 +28,7 @@ const BUILDINGS = [
     description: "Ancient Roman temple completed under Emperor Hadrian.",
   },
   {
+    id: "roman-forum",
     name: "Roman Forum",
     lat: 41.8925,
     lon: 12.4853,
@@ -39,6 +42,7 @@ const BUILDINGS = [
     description: "Political, religious, and commercial heart of ancient Rome.",
   },
   {
+    id: "circus-maximus",
     name: "Circus Maximus",
     lat: 41.8859,
     lon: 12.4857,
@@ -52,6 +56,7 @@ const BUILDINGS = [
     description: "Ancient chariot-racing stadium and gathering space.",
   },
   {
+    id: "domus-aurea",
     name: "Domus Aurea",
     lat: 41.8913889,
     lon: 12.4952778,
@@ -65,6 +70,7 @@ const BUILDINGS = [
     description: "Vast imperial palace complex built after the Great Fire.",
   },
   {
+    id: "temple-of-venus-and-roma",
     name: "Temple of Venus and Roma",
     lat: 41.891,
     lon: 12.4897,
@@ -78,6 +84,7 @@ const BUILDINGS = [
     description: "Largest temple in ancient Rome, dedicated to Venus and Roma.",
   },
   {
+    id: "arch-of-constantine",
     name: "Arch of Constantine",
     lat: 41.8899,
     lon: 12.4913,
@@ -92,6 +99,7 @@ const BUILDINGS = [
       "Triumphal arch celebrating Constantine's victory at Milvian Bridge.",
   },
   {
+    id: "arch-of-titus",
     name: "Arch of Titus",
     lat: 41.8906,
     lon: 12.4886,
@@ -105,6 +113,7 @@ const BUILDINGS = [
     description: "Triumphal arch commemorating the conquest of Jerusalem.",
   },
   {
+    id: "arch-of-septimius-severus",
     name: "Arch of Septimius Severus",
     lat: 41.8928,
     lon: 12.4847,
@@ -118,6 +127,7 @@ const BUILDINGS = [
     description: "Triumphal arch honoring Septimius Severus and his sons.",
   },
   {
+    id: "baths-of-caracalla",
     name: "Baths of Caracalla",
     lat: 41.8791,
     lon: 12.4924,
@@ -132,6 +142,7 @@ const BUILDINGS = [
       "Massive imperial bath complex with gyms, libraries, and gardens.",
   },
   {
+    id: "baths-of-diocletian",
     name: "Baths of Diocletian",
     lat: 41.903,
     lon: 12.498,
@@ -145,6 +156,7 @@ const BUILDINGS = [
     description: "Largest bath complex of imperial Rome.",
   },
   {
+    id: "baths-of-trajan",
     name: "Baths of Trajan",
     lat: 41.8918667,
     lon: 12.4962806,
@@ -158,6 +170,7 @@ const BUILDINGS = [
     description: "Imperial bath complex built over Nero's Golden House.",
   },
   {
+    id: "trajan-s-market",
     name: "Trajan's Market",
     lat: 41.8955,
     lon: 12.4858,
@@ -171,6 +184,7 @@ const BUILDINGS = [
     description: "Multi-level market complex built as part of Trajan's Forum.",
   },
   {
+    id: "mausoleum-of-augustus",
     name: "Mausoleum of Augustus",
     lat: 41.9057,
     lon: 12.4768,
@@ -184,6 +198,7 @@ const BUILDINGS = [
     description: "Imperial tomb built for Rome's first emperor.",
   },
   {
+    id: "theatre-of-marcellus",
     name: "Theatre of Marcellus",
     lat: 41.8921,
     lon: 12.4792,
@@ -198,6 +213,7 @@ const BUILDINGS = [
       "Ancient open-air theater later incorporated into medieval housing.",
   },
   {
+    id: "theatre-of-pompey",
     name: "Theatre of Pompey",
     lat: 41.89548,
     lon: 12.47398,
@@ -211,6 +227,7 @@ const BUILDINGS = [
     description: "First permanent stone theater in Rome.",
   },
   {
+    id: "largo-di-torre-argentina",
     name: "Largo di Torre Argentina",
     lat: 41.8959,
     lon: 12.4776,
@@ -224,6 +241,7 @@ const BUILDINGS = [
     description: "Republican-era temple ruins and archaeological area.",
   },
   {
+    id: "pyramid-of-cestius",
     name: "Pyramid of Cestius",
     lat: 41.8763889,
     lon: 12.4808333,
@@ -237,6 +255,7 @@ const BUILDINGS = [
     description: "Ancient pyramid-shaped tomb for Gaius Cestius.",
   },
   {
+    id: "basilica-of-maxentius",
     name: "Basilica of Maxentius",
     lat: 41.8919,
     lon: 12.4883,
@@ -251,6 +270,7 @@ const BUILDINGS = [
       "Largest basilica in the Roman Forum, later completed by Constantine.",
   },
   {
+    id: "temple-of-hercules-victor",
     name: "Temple of Hercules Victor",
     lat: 41.888722,
     lon: 12.481389,
@@ -265,6 +285,7 @@ const BUILDINGS = [
       "Circular marble temple near the Tiber, one of the oldest in Rome.",
   },
   {
+    id: "temple-of-portunus",
     name: "Temple of Portunus",
     lat: 41.889289,
     lon: 12.480893,
@@ -278,6 +299,7 @@ const BUILDINGS = [
     description: "Well-preserved Roman temple near the Forum Boarium.",
   },
   {
+    id: "castel-sant-angelo",
     name: "Castel Sant'Angelo",
     lat: 41.9031,
     lon: 12.4663,
@@ -292,6 +314,7 @@ const BUILDINGS = [
       "Hadrian's mausoleum later converted into a fortress and museum.",
   },
   {
+    id: "ponte-sant-angelo",
     name: "Ponte Sant'Angelo",
     lat: 41.9011,
     lon: 12.4667,
@@ -305,6 +328,7 @@ const BUILDINGS = [
     description: "Bridge built by Hadrian, later adorned with Baroque angels.",
   },
   {
+    id: "basilica-of-san-clemente",
     name: "Basilica of San Clemente",
     lat: 41.8897,
     lon: 12.4987,
@@ -319,6 +343,7 @@ const BUILDINGS = [
       "Layered basilica with medieval mosaics and underground temples.",
   },
   {
+    id: "santa-maria-in-trastevere",
     name: "Santa Maria in Trastevere",
     lat: 41.8891,
     lon: 12.4723,
@@ -332,6 +357,7 @@ const BUILDINGS = [
     description: "Medieval church known for its gold mosaics and piazza.",
   },
   {
+    id: "basilica-of-santa-maria-maggiore",
     name: "Basilica of Santa Maria Maggiore",
     lat: 41.8976,
     lon: 12.4989,
@@ -346,6 +372,7 @@ const BUILDINGS = [
       "Early Christian basilica with later medieval and Baroque layers.",
   },
   {
+    id: "archbasilica-of-saint-john-lateran",
     name: "Archbasilica of Saint John Lateran",
     lat: 41.8859,
     lon: 12.5062,
@@ -359,6 +386,7 @@ const BUILDINGS = [
     description: "Cathedral of Rome and the oldest papal basilica.",
   },
   {
+    id: "basilica-of-saint-paul-outside-the-walls",
     name: "Basilica of Saint Paul Outside the Walls",
     lat: 41.8586,
     lon: 12.4772,
@@ -372,6 +400,7 @@ const BUILDINGS = [
     description: "Major pilgrimage basilica rebuilt after a 19th-century fire.",
   },
   {
+    id: "santa-maria-in-cosmedin",
     name: "Santa Maria in Cosmedin",
     lat: 41.88813,
     lon: 12.48172,
@@ -386,6 +415,7 @@ const BUILDINGS = [
       "Church famous for the Bocca della Verita and medieval features.",
   },
   {
+    id: "santa-sabina",
     name: "Santa Sabina",
     lat: 41.8844,
     lon: 12.4797,
@@ -399,6 +429,7 @@ const BUILDINGS = [
     description: "Early Christian basilica on the Aventine Hill.",
   },
   {
+    id: "santa-prassede",
     name: "Santa Prassede",
     lat: 41.8961,
     lon: 12.4986,
@@ -413,6 +444,7 @@ const BUILDINGS = [
       "Church with glittering Byzantine mosaics and the San Zeno chapel.",
   },
   {
+    id: "santa-cecilia-in-trastevere",
     name: "Santa Cecilia in Trastevere",
     lat: 41.8875,
     lon: 12.4758,
@@ -427,6 +459,7 @@ const BUILDINGS = [
       "Medieval basilica dedicated to Saint Cecilia with layered history.",
   },
   {
+    id: "san-pietro-in-vincoli",
     name: "San Pietro in Vincoli",
     lat: 41.893872,
     lon: 12.493069,
@@ -441,6 +474,7 @@ const BUILDINGS = [
       "Church housing Michelangelo's Moses and the chains of Saint Peter.",
   },
   {
+    id: "san-giorgio-in-velabro",
     name: "San Giorgio in Velabro",
     lat: 41.88958,
     lon: 12.483158,
@@ -454,6 +488,7 @@ const BUILDINGS = [
     description: "Small medieval church near the Arch of Janus.",
   },
   {
+    id: "capitoline-museums",
     name: "Capitoline Museums",
     lat: 41.8929,
     lon: 12.4829,
@@ -467,6 +502,7 @@ const BUILDINGS = [
     description: "World's oldest public museum, redesigned by Michelangelo.",
   },
   {
+    id: "palazzo-farnese",
     name: "Palazzo Farnese",
     lat: 41.8958,
     lon: 12.4722,
@@ -480,6 +516,7 @@ const BUILDINGS = [
     description: "High Renaissance palace now housing the French Embassy.",
   },
   {
+    id: "tempietto-of-san-pietro-in-montorio",
     name: "Tempietto of San Pietro in Montorio",
     lat: 41.8896,
     lon: 12.4663,
@@ -493,6 +530,7 @@ const BUILDINGS = [
     description: "Bramante's small classical temple commemorating Saint Peter.",
   },
   {
+    id: "st-peter-s-basilica",
     name: "St Peter's Basilica",
     lat: 41.9022,
     lon: 12.4539,
@@ -507,6 +545,7 @@ const BUILDINGS = [
       "Vatican basilica with works by Bramante, Michelangelo, and Bernini.",
   },
   {
+    id: "sistine-chapel",
     name: "Sistine Chapel",
     lat: 41.9029,
     lon: 12.4545,
@@ -520,6 +559,7 @@ const BUILDINGS = [
     description: "Papal chapel famed for its Renaissance frescoes.",
   },
   {
+    id: "villa-farnesina",
     name: "Villa Farnesina",
     lat: 41.8935964,
     lon: 12.4673045,
@@ -533,6 +573,7 @@ const BUILDINGS = [
     description: "Renaissance suburban villa with frescoes by Raphael.",
   },
   {
+    id: "palazzo-della-cancelleria",
     name: "Palazzo della Cancelleria",
     lat: 41.8966861,
     lon: 12.4715222,
@@ -546,6 +587,7 @@ const BUILDINGS = [
     description: "Renaissance palace with a celebrated courtyard.",
   },
   {
+    id: "palazzo-massimo-alle-colonne",
     name: "Palazzo Massimo alle Colonne",
     lat: 41.896583,
     lon: 12.473656,
@@ -559,6 +601,7 @@ const BUILDINGS = [
     description: "Curved palace facade responding to the street alignment.",
   },
   {
+    id: "palazzo-madama-rome",
     name: "Palazzo Madama (Rome)",
     lat: 41.8992,
     lon: 12.4743,
@@ -573,6 +616,7 @@ const BUILDINGS = [
       "Historic palace now serving as the seat of the Italian Senate.",
   },
   {
+    id: "palazzo-spada",
     name: "Palazzo Spada",
     lat: 41.894028,
     lon: 12.471806,
@@ -586,6 +630,7 @@ const BUILDINGS = [
     description: "Palace known for Borromini's forced-perspective gallery.",
   },
   {
+    id: "piazza-del-campidoglio",
     name: "Piazza del Campidoglio",
     lat: 41.89333,
     lon: 12.48278,
@@ -599,6 +644,7 @@ const BUILDINGS = [
     description: "Capitoline Hill square redesigned by Michelangelo.",
   },
   {
+    id: "palazzo-venezia",
     name: "Palazzo Venezia",
     lat: 41.89644,
     lon: 12.480976,
@@ -612,6 +658,7 @@ const BUILDINGS = [
     description: "Renaissance palace anchoring Piazza Venezia, now a museum.",
   },
   {
+    id: "santa-maria-del-popolo",
     name: "Santa Maria del Popolo",
     lat: 41.91146,
     lon: 12.47655,
@@ -626,6 +673,7 @@ const BUILDINGS = [
       "Renaissance church known for chapels by Raphael and Caravaggio.",
   },
   {
+    id: "campo-de-fiori",
     name: "Campo de' Fiori",
     lat: 41.8956,
     lon: 12.4728,
@@ -640,6 +688,7 @@ const BUILDINGS = [
       "Marketplace square developed during late medieval and Renaissance growth.",
   },
   {
+    id: "vatican-gardens",
     name: "Vatican Gardens",
     lat: 41.90566,
     lon: 12.45095,
@@ -654,6 +703,7 @@ const BUILDINGS = [
       "Vatican gardens with Renaissance-era layouts and later additions.",
   },
   {
+    id: "villa-celimontana",
     name: "Villa Celimontana",
     lat: 41.88382,
     lon: 12.49568,
@@ -667,6 +717,7 @@ const BUILDINGS = [
     description: "Historic villa garden on the Caelian Hill.",
   },
   {
+    id: "trevi-fountain",
     name: "Trevi Fountain",
     lat: 41.9009,
     lon: 12.4833,
@@ -680,6 +731,7 @@ const BUILDINGS = [
     description: "Monumental fountain blending late Baroque and Rococo forms.",
   },
   {
+    id: "spanish-steps",
     name: "Spanish Steps",
     lat: 41.9059,
     lon: 12.4823,
@@ -694,6 +746,7 @@ const BUILDINGS = [
       "Grand stairway linking Piazza di Spagna and Trinita dei Monti.",
   },
   {
+    id: "piazza-navona",
     name: "Piazza Navona",
     lat: 41.8992,
     lon: 12.4731,
@@ -707,6 +760,7 @@ const BUILDINGS = [
     description: "Baroque square with Bernini fountains atop a Roman stadium.",
   },
   {
+    id: "sant-ivo-alla-sapienza",
     name: "Sant'Ivo alla Sapienza",
     lat: 41.8977,
     lon: 12.4746,
@@ -720,6 +774,7 @@ const BUILDINGS = [
     description: "Borromini's church with a spiraling lantern and star plan.",
   },
   {
+    id: "sant-andrea-al-quirinale",
     name: "Sant'Andrea al Quirinale",
     lat: 41.9072,
     lon: 12.4906,
@@ -733,6 +788,7 @@ const BUILDINGS = [
     description: "Oval church designed by Bernini with theatrical interiors.",
   },
   {
+    id: "palazzo-barberini",
     name: "Palazzo Barberini",
     lat: 41.902643,
     lon: 12.489498,
@@ -747,6 +803,7 @@ const BUILDINGS = [
       "Baroque palace with contributions from Bernini and Borromini.",
   },
   {
+    id: "piazza-del-popolo",
     name: "Piazza del Popolo",
     lat: 41.910714,
     lon: 12.476317,
@@ -761,6 +818,7 @@ const BUILDINGS = [
       "Monumental piazza framed by twin churches and the Porta del Popolo.",
   },
   {
+    id: "sant-agnese-in-agone",
     name: "Sant'Agnese in Agone",
     lat: 41.89874,
     lon: 12.47258,
@@ -774,6 +832,7 @@ const BUILDINGS = [
     description: "Baroque church on Piazza Navona with a dramatic facade.",
   },
   {
+    id: "san-carlo-alle-quattro-fontane",
     name: "San Carlo alle Quattro Fontane",
     lat: 41.90179,
     lon: 12.49077,
@@ -787,6 +846,7 @@ const BUILDINGS = [
     description: "Small Baroque church known for its oval dome and curves.",
   },
   {
+    id: "santa-maria-della-vittoria",
     name: "Santa Maria della Vittoria",
     lat: 41.9047,
     lon: 12.4942,
@@ -800,6 +860,7 @@ const BUILDINGS = [
     description: "Baroque church housing Bernini's Ecstasy of Saint Teresa.",
   },
   {
+    id: "st-peter-s-square",
     name: "St. Peter's Square",
     lat: 41.9022,
     lon: 12.4572,
@@ -814,6 +875,7 @@ const BUILDINGS = [
       "Colonnaded piazza framing the approach to St Peter's Basilica.",
   },
   {
+    id: "fontana-dei-quattro-fiumi",
     name: "Fontana dei Quattro Fiumi",
     lat: 41.89883,
     lon: 12.47324,
@@ -827,6 +889,7 @@ const BUILDINGS = [
     description: "Fountain of the Four Rivers at the center of Piazza Navona.",
   },
   {
+    id: "villa-borghese-gardens",
     name: "Villa Borghese Gardens",
     lat: 41.91417,
     lon: 12.49222,
@@ -841,6 +904,7 @@ const BUILDINGS = [
       "Historic gardens and parkland that evolved from a 17th-century villa estate.",
   },
   {
+    id: "villa-doria-pamphili",
     name: "Villa Doria Pamphili",
     lat: 41.887295,
     lon: 12.450471,
@@ -855,6 +919,7 @@ const BUILDINGS = [
       "Rome's largest landscaped public park surrounding a historic villa.",
   },
   {
+    id: "vittoriano-altare-della-patria",
     name: "Vittoriano (Altare della Patria)",
     lat: 41.894599,
     lon: 12.483092,
@@ -869,6 +934,7 @@ const BUILDINGS = [
       "National monument honoring Victor Emmanuel II with panoramic terraces.",
   },
   {
+    id: "palazzo-della-civilta-italiana",
     name: "Palazzo della Civilta Italiana",
     lat: 41.8346,
     lon: 12.4692,
@@ -882,6 +948,7 @@ const BUILDINGS = [
     description: "EUR district landmark known as the Square Colosseum.",
   },
   {
+    id: "eur-district",
     name: "EUR District",
     lat: 41.83181,
     lon: 12.46598,
@@ -896,6 +963,7 @@ const BUILDINGS = [
       "Rationalist planned district built for a planned world exposition.",
   },
   {
+    id: "palazzo-dei-congressi",
     name: "Palazzo dei Congressi",
     lat: 41.833,
     lon: 12.4665,
@@ -909,6 +977,7 @@ const BUILDINGS = [
     description: "Rationalist congress hall in the EUR district.",
   },
   {
+    id: "stadio-olimpico",
     name: "Stadio Olimpico",
     lat: 41.9339,
     lon: 12.4547,
@@ -923,6 +992,7 @@ const BUILDINGS = [
       "Rome's main sports stadium, renovated for multiple Olympics and events.",
   },
   {
+    id: "foro-italico-complex",
     name: "Foro Italico Complex",
     lat: 41.93192,
     lon: 12.45884,
@@ -936,6 +1006,7 @@ const BUILDINGS = [
     description: "Sports complex with marble plazas, monuments, and stadiums.",
   },
   {
+    id: "pincio-terrace",
     name: "Pincio Terrace",
     lat: 41.91167,
     lon: 12.47972,
@@ -950,6 +1021,7 @@ const BUILDINGS = [
       "Panoramic terrace and promenade designed in the early 19th century.",
   },
   {
+    id: "giardino-degli-aranci",
     name: "Giardino degli Aranci",
     lat: 41.8851,
     lon: 12.4804,
@@ -963,6 +1035,7 @@ const BUILDINGS = [
     description: "Orange Garden overlooking the Tiber on the Aventine Hill.",
   },
   {
+    id: "orto-botanico-di-roma",
     name: "Orto Botanico di Roma",
     lat: 41.892297,
     lon: 12.465853,
@@ -977,6 +1050,7 @@ const BUILDINGS = [
       "Botanical garden with themed collections on the slopes of Gianicolo.",
   },
   {
+    id: "villa-ada",
     name: "Villa Ada",
     lat: 41.9349,
     lon: 12.5045,
@@ -990,6 +1064,7 @@ const BUILDINGS = [
     description: "Large public park formed from a historic villa estate.",
   },
   {
+    id: "janiculum-hill-terraces",
     name: "Janiculum Hill Terraces",
     lat: 41.88333,
     lon: 12.46667,
@@ -1004,6 +1079,7 @@ const BUILDINGS = [
       "Scenic terraces and promenades overlooking the historic center.",
   },
   {
+    id: "palatine-hill-gardens",
     name: "Palatine Hill Gardens",
     lat: 41.88931,
     lon: 12.48635,
@@ -1017,6 +1093,7 @@ const BUILDINGS = [
     description: "Archaeological parkland and gardens on the Palatine Hill.",
   },
   {
+    id: "appian-way-regional-park",
     name: "Appian Way Regional Park",
     lat: 41.84867,
     lon: 12.52447,
@@ -1030,6 +1107,7 @@ const BUILDINGS = [
     description: "Protected green corridor along the historic Appian Way.",
   },
   {
+    id: "parco-degli-acquedotti",
     name: "Parco degli Acquedotti",
     lat: 41.847,
     lon: 12.562,
@@ -1044,6 +1122,7 @@ const BUILDINGS = [
       "Parkland framing ancient aqueducts along the Appian Way corridor.",
   },
   {
+    id: "trajan-s-column",
     name: "Trajan's Column",
     lat: 41.8959,
     lon: 12.4843,
@@ -1058,6 +1137,7 @@ const BUILDINGS = [
       "Monumental column commemorating Trajan's victory in the Dacian wars.",
   },
   {
+    id: "forum-of-trajan",
     name: "Forum of Trajan",
     lat: 41.8956,
     lon: 12.4847,
@@ -1071,6 +1151,7 @@ const BUILDINGS = [
     description: "Last and largest of the Imperial Forums in Rome.",
   },
   {
+    id: "forum-of-augustus",
     name: "Forum of Augustus",
     lat: 41.8936,
     lon: 12.4861,
@@ -1085,6 +1166,7 @@ const BUILDINGS = [
       "Imperial forum built by Augustus and dedicated to Mars Ultor.",
   },
   {
+    id: "forum-of-nerva",
     name: "Forum of Nerva",
     lat: 41.895,
     lon: 12.487,
@@ -1099,6 +1181,7 @@ const BUILDINGS = [
       "Small imperial forum linking earlier forums along the Via dei Fori Imperiali.",
   },
   {
+    id: "forum-of-caesar",
     name: "Forum of Caesar",
     lat: 41.8944,
     lon: 12.4858,
@@ -1113,6 +1196,7 @@ const BUILDINGS = [
       "Forum built by Julius Caesar as an extension to the Roman Forum.",
   },
   {
+    id: "porta-maggiore",
     name: "Porta Maggiore",
     lat: 41.8917,
     lon: 12.5132,
@@ -1127,6 +1211,7 @@ const BUILDINGS = [
       "Monumental gate where Roman aqueducts crossed the Aurelian Walls.",
   },
   {
+    id: "aurelian-walls",
     name: "Aurelian Walls",
     lat: 41.8897,
     lon: 12.5005,
@@ -1141,6 +1226,7 @@ const BUILDINGS = [
       "Defensive walls enclosing the city of Rome in late antiquity.",
   },
   {
+    id: "san-giovanni-in-laterano-cloister",
     name: "San Giovanni in Laterano Cloister",
     lat: 41.8861,
     lon: 12.5064,
@@ -1155,6 +1241,7 @@ const BUILDINGS = [
       "Medieval cloister famous for its twisted Cosmatesque columns.",
   },
   {
+    id: "santa-maria-sopra-minerva",
     name: "Santa Maria sopra Minerva",
     lat: 41.8986,
     lon: 12.4764,
@@ -1168,6 +1255,7 @@ const BUILDINGS = [
     description: "Gothic Dominican church near the Pantheon.",
   },
   {
+    id: "san-luigi-dei-francesi",
     name: "San Luigi dei Francesi",
     lat: 41.8994,
     lon: 12.4731,
@@ -1182,6 +1270,7 @@ const BUILDINGS = [
       "Church known for Caravaggio paintings in the Contarelli Chapel.",
   },
   {
+    id: "sant-agostino",
     name: "Sant'Agostino",
     lat: 41.8995,
     lon: 12.4727,
@@ -1195,6 +1284,7 @@ const BUILDINGS = [
     description: "Renaissance church with works by Raphael and Caravaggio.",
   },
   {
+    id: "il-gesu",
     name: "Il Gesu",
     lat: 41.8956,
     lon: 12.4823,
@@ -1209,6 +1299,7 @@ const BUILDINGS = [
       "Mother church of the Jesuit order and prototype for Baroque churches.",
   },
   {
+    id: "san-andrea-della-valle",
     name: "San Andrea della Valle",
     lat: 41.8981,
     lon: 12.4723,
@@ -1222,6 +1313,7 @@ const BUILDINGS = [
     description: "Baroque church with one of the largest domes in Rome.",
   },
   {
+    id: "fontana-della-barcaccia",
     name: "Fontana della Barcaccia",
     lat: 41.9057,
     lon: 12.4822,
@@ -1235,6 +1327,7 @@ const BUILDINGS = [
     description: "Boat-shaped fountain at the base of the Spanish Steps.",
   },
   {
+    id: "galleria-borghese",
     name: "Galleria Borghese",
     lat: 41.9142,
     lon: 12.4923,
@@ -1248,6 +1341,7 @@ const BUILDINGS = [
     description: "Villa museum housing masterpieces by Bernini and Caravaggio.",
   },
   {
+    id: "palazzo-corsini",
     name: "Palazzo Corsini",
     lat: 41.8936,
     lon: 12.4665,
@@ -1262,6 +1356,7 @@ const BUILDINGS = [
       "Baroque palace now housing the Galleria Nazionale d'Arte Antica.",
   },
   {
+    id: "quartiere-coppede",
     name: "Quartiere Coppedè",
     lat: 41.9237,
     lon: 12.5097,
@@ -1276,6 +1371,7 @@ const BUILDINGS = [
       "Eclectic architectural district mixing Art Nouveau and Baroque influences.",
   },
   {
+    id: "palazzetto-dello-sport",
     name: "Palazzetto dello Sport",
     lat: 41.9281,
     lon: 12.4561,
@@ -1289,6 +1385,7 @@ const BUILDINGS = [
     description: "Innovative concrete dome arena built for the 1960 Olympics.",
   },
   {
+    id: "maxxi-national-museum-of-21st-century-arts",
     name: "MAXXI – National Museum of 21st Century Arts",
     lat: 41.928,
     lon: 12.4663,
@@ -1302,6 +1399,7 @@ const BUILDINGS = [
       "National museum of contemporary art featuring flowing concrete forms and complex interior circulation.",
   },
   {
+    id: "auditorium-parco-della-musica",
     name: "Auditorium Parco della Musica",
     lat: 41.9293,
     lon: 12.4743,
@@ -1315,6 +1413,7 @@ const BUILDINGS = [
       "Large music complex composed of three concert halls surrounding an open amphitheater.",
   },
   {
+    id: "ara-pacis-museum",
     name: "Ara Pacis Museum",
     lat: 41.9058,
     lon: 12.4769,
@@ -1328,6 +1427,7 @@ const BUILDINGS = [
       "Modern glass and travertine museum built to house the ancient Ara Pacis altar.",
   },
   {
+    id: "rome-convention-center-la-nuvola",
     name: "Rome Convention Center – La Nuvola",
     lat: 41.8338,
     lon: 12.4655,
@@ -1341,6 +1441,7 @@ const BUILDINGS = [
       "Large convention complex featuring a floating cloud-like structure inside a glass box.",
   },
   {
+    id: "jubilee-church-dives-in-misericordia",
     name: "Jubilee Church (Dives in Misericordia)",
     lat: 41.8656,
     lon: 12.5964,
@@ -1354,6 +1455,7 @@ const BUILDINGS = [
       "Minimalist church composed of three large curved concrete shells symbolizing the Holy Trinity.",
   },
   {
+    id: "macro-museum-of-contemporary-art-of-rome",
     name: "MACRO – Museum of Contemporary Art of Rome",
     lat: 41.9136,
     lon: 12.4965,
@@ -1367,6 +1469,7 @@ const BUILDINGS = [
       "Contemporary art museum created by transforming a former Peroni brewery.",
   },
   {
+    id: "apple-via-del-corso-store",
     name: "Apple Via del Corso Store",
     lat: 41.9027,
     lon: 12.479,
@@ -1380,6 +1483,7 @@ const BUILDINGS = [
       "Restoration and adaptive reuse of Palazzo Marignoli combining historic frescoes and modern design.",
   },
   {
+    id: "mosque-of-rome-islamic-cultural-center-of-italy",
     name: "Mosque of Rome (Islamic Cultural Center of Italy)",
     lat: 41.9347,
     lon: 12.495,
@@ -1393,6 +1497,7 @@ const BUILDINGS = [
       "Largest mosque in Europe, combining Islamic spatial traditions with Italian materials and postmodern architectural language.",
   },
   {
+    id: "corviale-housing-complex",
     name: "Corviale Housing Complex",
     lat: 41.8498,
     lon: 12.4216,
@@ -1406,6 +1511,7 @@ const BUILDINGS = [
       "Massive linear social housing project nearly one kilometer long representing Italian brutalist urban planning.",
   },
   {
+    id: "laurentino-38-housing",
     name: "Laurentino 38 Housing",
     lat: 41.8046,
     lon: 12.4828,
@@ -1419,6 +1525,7 @@ const BUILDINGS = [
       "Large postwar social housing district built as part of Rome's urban expansion.",
   },
   {
+    id: "palazzo-della-farnesina",
     name: "Palazzo della Farnesina",
     lat: 41.9333,
     lon: 12.454,
@@ -1432,6 +1539,7 @@ const BUILDINGS = [
       "Monumental rationalist building that houses the Italian Ministry of Foreign Affairs.",
   },
   {
+    id: "fao-headquarters",
     name: "FAO Headquarters",
     lat: 41.8855,
     lon: 12.4924,
