@@ -229,7 +229,7 @@ const map = L.map("map", {
 });
 
 L.tileLayer(
-  "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
+   "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=cb1_4g2k_1_ad6741852bc5019b7f5ed83d",
   {
     subdomains: "abcd",
     maxZoom: 20,
