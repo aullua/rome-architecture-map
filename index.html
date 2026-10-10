@@ -45,6 +45,24 @@
 
       <aside class="filters">
         <h2 id="filters-title">Filters</h2>
+        <section class="checkin-panel" aria-labelledby="checkin-title">
+          <h3 id="checkin-title">My visits</h3>
+          <p id="checkin-progress" aria-live="polite"></p>
+          <progress id="checkin-progress-bar" value="0" max="1" aria-label="Visit progress"></progress>
+          <div class="checkin-filter" role="group" aria-labelledby="checkin-title">
+            <button type="button" data-checkin-filter="all" aria-pressed="true">All</button>
+            <button type="button" data-checkin-filter="visited" aria-pressed="false">Visited</button>
+            <button type="button" data-checkin-filter="unvisited" aria-pressed="false">Not visited</button>
+          </div>
+          <p id="checkin-storage-hint" class="checkin-hint">Saved in this browser. Export a backup before clearing site data.</p>
+          <div class="checkin-backup-actions">
+            <button id="checkin-export" type="button">Export visits</button>
+            <button id="checkin-import" type="button">Import visits</button>
+          </div>
+          <input id="checkin-import-file" type="file" accept=".json,application/json" hidden />
+          <p id="checkin-import-hint" class="checkin-hint">Import adds new visits and keeps existing records.</p>
+          <p id="checkin-message" class="checkin-message" role="status" aria-live="polite"></p>
+        </section>
         <details class="filter-group">
           <summary id="period-title">Period</summary>
           <div id="period-filters" class="filter-list"></div>
@@ -117,6 +135,7 @@
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"></script>
     <script src="buildings.js"></script>
+    <script src="checkins.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
